@@ -1,0 +1,91 @@
+USE ${database};
+
+DROP TABLE IF EXISTS ${table};
+
+CREATE EXTERNAL TABLE ${table}
+(
+    external_customer_id                STRING      COMMENT "Numéro du client(« P »+Id Commedia pour client PNA « D »+COCLICO pour client DATA)"                                                    ,
+    trading_name                        STRING      COMMENT "Nom Commercial"                                                                                                                        ,
+    brand                               STRING      COMMENT "Enseigne"                                                                                                                              ,
+    siret_number                        STRING      COMMENT "N° de Siret"                                                                                                                           ,
+    naf_code                            STRING      COMMENT "Code NAF"                                                                                                                              ,
+    regate_code                         STRING      COMMENT "Code REGATE de l’entité commerciale relatif au Secteur Vendeur auquel appartient le client"                                            ,
+    business_name                       STRING      COMMENT "Raison Sociale"                                                                                                                        ,
+    customer_creation_date              STRING      COMMENT "Date de création du client"                                                                                                            ,
+    public_customer_indicator           STRING      COMMENT "Client Public (O/N)"                                                                                                                   ,
+    customer_id                         STRING      COMMENT "Identifiant client Courrier"                                                                                                           ,
+    customer_address_l2                 STRING      COMMENT "Ligne adresse 2 (voir RG N°3)"                                                                                                         ,
+    customer_address_l3                 STRING      COMMENT "Ligne adresse 3 (voir RG N°3)"                                                                                                         ,
+    customer_address_l4                 STRING      COMMENT "Ligne adresse 4 (voir RG N°3)"                                                                                                         ,
+    customer_address_l5                 STRING      COMMENT "Ligne adresse 5 (voir RG N°3)"                                                                                                         ,
+    customer_address_l6                 STRING      COMMENT "Ligne adresse 6 (voir RG N°3)"                                                                                                         ,
+    customer_mail_routing_code          STRING      COMMENT "Code acheminement Courrier (Code postal/cedex)"                                                                                        ,
+    customer_address_l7                 STRING      COMMENT "Ligne adresse 6 (voir RG N°3)"                                                                                                         ,
+    movement_number                     STRING      COMMENT "Numéro du Mouvement"                                                                                                                   ,
+    adv_regate_code                     STRING      COMMENT "Code REGATE de l’entité de l’ADV"                                                                                                      ,
+    movement_type_code                  STRING      COMMENT "Code Type de mouvement"                                                                                                                ,
+    movement_type_label                 STRING      COMMENT "Libellé Type de mouvement"                                                                                                             ,
+    credit_origin_code                  STRING      COMMENT "Code Origine avoir"                                                                                                                    ,
+    credit_origin_label                 STRING      COMMENT "Libellé Origine avoir"                                                                                                                 ,
+    accounting_sent_date                STRING      COMMENT "Date d’envoi en comptabilité"                                                                                                          ,
+    movement_issue_date                 STRING      COMMENT "Date d’émission du mouvement"                                                                                                          ,
+    due_date                            STRING      COMMENT "Date d’échéance"                                                                                                                       ,
+    movement_amount_ht                  DEC(18,5)   COMMENT "Montant HT du mouvement"                                                                                                               ,
+    movement_tax_amount                 DEC(18,5)   COMMENT "Montant de la TVA"                                                                                                                     ,
+    associate_invoice_number            STRING      COMMENT "Numéro de Facture associée (uniquement si le mouvement est un « Avoir »)"                                                              ,
+    movement_address_l2                 STRING      COMMENT "Ligne adresse 2 (voir RG N°3)"                                                                                                         ,
+    movement_address_l3                 STRING      COMMENT "Ligne adresse 3 (voir RG N°3)"                                                                                                         ,
+    movement_address_l4                 STRING      COMMENT "Ligne adresse 4 (voir RG N°3)"                                                                                                         ,
+    movement_address_l5                 STRING      COMMENT "Ligne adresse 5 (voir RG N°3)"                                                                                                         ,
+    movement_address_l6                 STRING      COMMENT "Ligne adresse 6 (voir RG N°3)"                                                                                                         ,
+    movement_mail_routing_code          STRING      COMMENT "Code acheminement Courrier (Code postal/cedex)"                                                                                        ,
+    movement_address_l7                 STRING      COMMENT "Ligne adresse 7 (voir RG N°3)"                                                                                                         ,
+    payment_condition_code              STRING      COMMENT "Code Condition de règlement"                                                                                                           ,
+    payment_condition_label             STRING      COMMENT "Libellé Condition de règlement"                                                                                                        ,
+    order_number                        STRING      COMMENT "Numéro de commande (préfixé par «C» ou «D »)"                                                                                          ,
+    order_version_number                STRING      COMMENT "Numéro de version de la commande (valorisé à « 1 »)"                                                                                   ,
+    order_validation_date               STRING      COMMENT "Date de validation de la commande"                                                                                                     ,
+    customer_seller_sector_code         STRING      COMMENT "Code secteur vendeur du client"                                                                                                        ,
+    seller_team_regate_code             STRING      COMMENT "Code REGATE FDV"                                                                                                                       ,
+    app_regate_code                     STRING      COMMENT "Code REGATE APP"                                                                                                                       ,
+    campaign_number                     STRING      COMMENT "Numéro de la campagne"                                                                                                                 ,
+    distribution_start_date             STRING      COMMENT "Date de début de distribution"                                                                                                         ,
+    distribution_end_date               STRING      COMMENT "Date de fin de distribution"                                                                                                           ,
+    message_weight                      STRING      COMMENT "Poids du message"                                                                                                                      ,
+    message_type_code                   STRING      COMMENT "Code Type Message"                                                                                                                     ,
+    message_type_label                  STRING      COMMENT "Libellé Type Message"                                                                                                                  ,
+    framework_agreement_number          STRING      COMMENT "N° Accord Cadre"                                                                                                                       ,
+    engagement_type                     STRING      COMMENT "Type d’engagement"                                                                                                                     ,
+    product_code                        STRING      COMMENT "Code Produit"                                                                                                                          ,
+    service_type                        STRING      COMMENT "Type de prestation"                                                                                                                    ,
+    order_line                          STRING      COMMENT "N° ligne de commande (dans le cas d’une remise, ce numéro permet de retrouver la prestation sur laquelle la remise a été appliquée)"   ,
+    unit_price_ht                       DEC(18,5)   COMMENT "Prix unitaire HT (exprimé en négatif s’il s’agit d’une remise)"                                                                        ,
+    quantity                            INT         COMMENT "Quantité"                                                                                                                              ,
+    amount_ht                           DEC(18,5)   COMMENT "Montant HT (exprimé en négatif s’il s’agit d’une remise)"                                                                              ,
+    tax_rate                            DEC(18,5)   COMMENT "Taux de TVA"                                                                                                                           ,
+    tax_amount                          DEC(18,5)   COMMENT "Montant de la TVA (exprimé en négatif s’il s’agit d’une remise)"                                                                       ,
+    service_order_line                  STRING      COMMENT "N° ligne de commande de la prestation, dans le cas d’une remise"                                                                       ,
+    date_import                         STRING      COMMENT "date d'import au format aaaammjj_hhmi"                                                                                                 ,
+    cabestan_product_code               STRING      COMMENT "code produit cabestan"                                                                                                                 ,
+    cabestan_product_label              STRING      COMMENT "libellé produit cabestan"                                                                                                              ,
+    cabestan_sub_product_code           STRING      COMMENT "code sous-produit cabestan"                                                                                                            ,
+    cabestan_sub_product_label          STRING      COMMENT "libellé sous-produit cabestan"                                                                                                         ,
+    cabestan_indicateur_cap             STRING      COMMENT "Indicateur du CAP"                                                                                                                     ,
+    refpm_customer_id                   STRING      COMMENT "identifiant client courrier (coclico)"                                                                                                 ,
+    refpm_customer_name                 STRING      COMMENT "nom du client courrier"                                                                                                                ,
+    refpm_brand_name                    STRING      COMMENT "Enseigne du client"                                                                                                                    ,
+    refpm_customer_type_code            STRING      COMMENT "Code type client"                                                                                                                      ,
+    refpm_customer_type_label           STRING      COMMENT "Type Client"                                                                                                                           ,
+    equinox_accounting_year_month       STRING      COMMENT "période comptable"                                                                                                                     ,
+    accounting_sent_month_label         STRING      COMMENT "libellé du mois d'envoi à la comptabilité"                                                                                             ,
+    equinox_accounting_month_label      STRING      COMMENT "libellé du mois comptable de rattachement de la facture"
+)
+STORED AS PARQUET
+LOCATION '${hdfs_path}'
+;
+
+ALTER TABLE ${table}
+ADD CONSTRAINT pk_${table} PRIMARY KEY (external_customer_id, movement_number, order_number, campaign_number, product_code, order_line)
+disable novalidate
+;
+-- todo mettre uniquement order_number,order_line --> à vérif
